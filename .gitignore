@@ -1,0 +1,8 @@
+*.py[co]
+/bin/
+/include/
+/lib/
+/man/
+/pip-selfcheck.json
+/share/
+__pycache__/

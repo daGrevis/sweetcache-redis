@@ -1,0 +1,2 @@
+redis
+-e git://github.com/daGrevis/sweetcache.git#egg=sweetcache
