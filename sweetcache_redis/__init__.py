@@ -1,17 +1,25 @@
 import pickle
 
+import redis
 from sweetcache import NotFoundError
-from redis import Redis
 
 
 class RedisBackend(object):
 
     def __init__(self, **kwargs):
-        self.redis = Redis(**kwargs)
+        self.redis = redis.Redis(**kwargs)
 
     @staticmethod
     def _make_key(key):
         return ".".join(key)
+
+    def is_available(self):
+        try:
+            self.redis.ping()
+        except redis.exceptions.RedisError:
+            return False
+
+        return True
 
     def set(self, key, value, expires):
         name = self._make_key(key)
